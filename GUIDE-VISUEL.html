@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Visuel - Horaires de Prière Amélioré</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #764ba2 100%);
+            color: #333;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        
+        .feature-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            border-left: 5px solid #ffd700;
+        }
+        
+        .feature-section h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 10px;
+            border-left: 3px solid #22c55e;
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .screenshot {
+            background: #2d3748;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .step {
+            display: flex;
+            align-items: start;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-item {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .before {
+            background: #fee2e2;
+            border: 2px solid #ef4444;
+        }
+        
+        .after {
+            background: #d1fae5;
+            border: 2px solid #22c55e;
+        }
+        
+        .comparison-item h4 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #fbbf24;
+            margin: 20px 0;
+        }
+        
+        .highlight strong {
+            color: #92400e;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕌 Guide Visuel des Améliorations</h1>
+        <p class="subtitle">Découvrez toutes les nouvelles fonctionnalités de votre site d'horaires de prière</p>
+        
+        <!-- Feature 1: Notifications -->
+        <div class="feature-section">
+            <h2><span class="emoji">🔔</span> Système de Notifications Intelligent</h2>
+            <p style="margin-bottom: 20px; color: #666;">
+                Restez connecté avec vos prières grâce à un système de notifications avancé qui vous alerte au bon moment.
+            </p>
+            
+            <ul class="feature-list">
+                <li>
+                    <span class="emoji">📱</span>
+                    <strong>Notifications du navigateur :</strong> Recevez des alertes même quand la page n'est pas visible
+                </li>
+                <li>
+                    <span class="emoji">🔊</span>
+                    <strong>Adhan automatique :</strong> L'appel à la prière se joue automatiquement à l'heure
+                </li>
+                <li>
+                    <span class="emoji">⚙️</span>
+                    <strong>Contrôle individuel :</strong> Activez/désactivez chaque prière séparément
+                </li>
+                <li>
+                    <span class="emoji">🎚️</span>
+                    <strong>Volume ajustable :</strong> Contrôlez le volume de l'adhan de 0% à 100%
+                </li>
+                <li>
+                    <span class="emoji">💾</span>
+                    <strong>Sauvegarde automatique :</strong> Vos préférences sont mémorisées
+                </li>
+            </ul>
+            
+            <div class="highlight">
+                <strong>⚡ Nouveauté :</strong> Le système vérifie l'heure toutes les 30 secondes et ne notifie qu'une seule fois par prière par jour.
+            </div>
+        </div>
+        
+        <!-- Feature 2: Animations -->
+        <div class="feature-section">
+            <h2><span class="emoji">🎨</span> Animations HD Améliorées</h2>
+            <p style="margin-bottom: 20px; color: #666;">
+                Une expérience visuelle moderne et fluide avec des animations professionnelles.
+            </p>
+            
+            <div class="comparison">
+                <div class="comparison-item before">
+                    <h4>❌ Avant</h4>
+                    <p>Fond statique</p>
+                    <p>Transitions simples</p>
+                    <p>Effets basiques</p>
+                </div>
+                <div class="comparison-item after">
+                    <h4>✅ Après</h4>
+                    <p>Gradient animé dynamique</p>
+                    <p>Particules flottantes</p>
+                    <p>Effets de brillance</p>
+                    <p>Animations de pulse</p>
+                    <p>Hover effects élégants</p>
+                </div>
+            </div>
+            
+            <ul class="feature-list">
+                <li>
+                    <span class="emoji">🌊</span>
+                    <strong>Gradient dynamique :</strong> Le fond change subtilement de couleurs
+                </li>
+                <li>
+                    <span class="emoji">✨</span>
+                    <strong>Particules flottantes :</strong> Effets visuels subtils en arrière-plan
+                </li>
+                <li>
+                    <span class="emoji">💫</span>
+                    <strong>Effet de brillance :</strong> La prière actuelle brille avec animation
+                </li>
+                <li>
+                    <span class="emoji">🎯</span>
+                    <strong>Pulse dynamique :</strong> Animation de pulsation sur les éléments actifs
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Feature 3: Interface -->
+        <div class="feature-section">
+            <h2><span class="emoji">📱</span> Interface Améliorée</h2>
+            
+            <ul class="feature-list">
+                <li>
+                    <span class="emoji">🎨</span>
+                    <strong>Design moderne :</strong> Interface élégante et professionnelle
+                </li>
+                <li>
+                    <span class="emoji">📐</span>
+                    <strong>Responsive optimisé :</strong> S'adapte parfaitement à tous les écrans
+                </li>
+                <li>
+                    <span class="emoji">⚡</span>
+                    <strong>Performances accrues :</strong> Animations fluides même sur mobile
+                </li>
+                <li>
+                    <span class="emoji">🎯</span>
+                    <strong>Interactions intuitives :</strong> Hover effects et transitions douces
+                </li>
+            </ul>
+        </div>
+        
+        <!-- How to Use -->
+        <div class="feature-section">
+            <h2><span class="emoji">🚀</span> Comment Configurer les Notifications</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Ouvrir le panneau de notifications</h3>
+                    <p>Cliquez sur le bouton <strong>🔔 Notifications</strong> dans le header du site.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Autoriser les notifications</h3>
+                    <p>Cliquez sur le bouton vert <strong>"Autoriser les notifications du navigateur"</strong> et acceptez la demande de permission.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Activer les prières</h3>
+                    <p>Utilisez les toggles pour activer/désactiver les notifications pour chaque prière individuellement.</p>
+                    <div class="screenshot">
+                        🌅 Fajr      [TOGGLE ON]
+                        ☀️ Dhuhr     [TOGGLE ON]
+                        🌤️ Asr       [TOGGLE OFF]
+                        🌆 Maghrib   [TOGGLE ON]
+                        🌙 Isha      [TOGGLE ON]
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Ajuster le volume</h3>
+                    <p>Utilisez le curseur pour régler le volume de l'adhan selon vos préférences (0-100%).</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Tester le système</h3>
+                    <p>Cliquez sur le bouton <strong>🔊 Tester l'Adhan</strong> pour vérifier que tout fonctionne correctement.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technical Details -->
+        <div class="feature-section">
+            <h2><span class="emoji">🔧</span> Détails Techniques</h2>
+            
+            <div class="highlight">
+                <strong>📋 Fichiers modifiés :</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><code>index.html</code> - Ajout du bouton notifications et du modal</li>
+                    <li><code>style.css</code> - +500 lignes de nouveaux styles et animations</li>
+                    <li><code>script.js</code> - +300 lignes pour le système de notifications</li>
+                </ul>
+            </div>
+            
+            <ul class="feature-list" style="margin-top: 20px;">
+                <li>
+                    <span class="emoji">🌐</span>
+                    <strong>APIs utilisées :</strong> Notifications API, Audio API, LocalStorage API
+                </li>
+                <li>
+                    <span class="emoji">🔒</span>
+                    <strong>Sécurité :</strong> Toutes les données restent sur votre appareil
+                </li>
+                <li>
+                    <span class="emoji">⚡</span>
+                    <strong>Performance :</strong> Optimisé pour ne pas ralentir votre navigateur
+                </li>
+                <li>
+                    <span class="emoji">📱</span>
+                    <strong>Compatibilité :</strong> Chrome, Firefox, Safari, Edge, Opera, Brave
+                </li>
+            </ul>
+        </div>
+        
+        <!-- File List -->
+        <div class="feature-section">
+            <h2><span class="emoji">📦</span> Fichiers Inclus</h2>
+            
+            <div class="screenshot">
+horaires-priere-ameliore/
+├── 📄 index.html           (16 KB)  - Page principale
+├── 🎨 style.css            (55 KB)  - Styles et animations
+├── ⚙️  script.js            (66 KB)  - Logique et notifications
+├── 🔊 adhan1.mp3           (5.9 MB) - Audio de l'adhan
+├── 🎬 ramadan.mp4          (2.4 MB) - Vidéo Ramadan
+├── 🖼️  ramadan.gif          (502 KB) - GIF Ramadan
+├── 🌅 fajr-bg.jpg          (121 KB) - Fond Fajr
+├── ☀️  dhuhr-bg.jpg         (267 KB) - Fond Dhuhr
+├── 🌤️  asr-bg.jpg           (267 KB) - Fond Asr
+├── 🌆 maghrib-bg.jpg       (237 KB) - Fond Maghrib
+├── 🌙 isha-bg.jpg          (70 KB)  - Fond Isha
+├── 📖 README-AMELIORE.md   (9.2 KB) - Documentation complète
+├── 📖 README.md            (3.3 KB) - Documentation originale
+├── 🛡️  SECURITY.md          (828 B)  - Politique de sécurité
+└── 🚀 GUIDE-DEMARRAGE.md           - Ce guide
+            </div>
+        </div>
+        
+        <!-- Next Steps -->
+        <div class="feature-section" style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-left-color: #22c55e;">
+            <h2><span class="emoji">✅</span> Prochaines Étapes</h2>
+            
+            <ol style="margin-left: 20px; font-size: 1.1em;">
+                <li style="margin-bottom: 10px;"><strong>Testez localement</strong> en ouvrant <code>index.html</code> dans votre navigateur</li>
+                <li style="margin-bottom: 10px;"><strong>Créez un compte GitHub</strong> sur https://github.com</li>
+                <li style="margin-bottom: 10px;"><strong>Créez un repository</strong> et uploadez tous les fichiers</li>
+                <li style="margin-bottom: 10px;"><strong>Activez GitHub Pages</strong> dans les paramètres</li>
+                <li style="margin-bottom: 10px;"><strong>Configurez les notifications</strong> sur votre site en ligne</li>
+            </ol>
+            
+            <div class="highlight" style="margin-top: 20px; background: white;">
+                <strong>🎉 Félicitations !</strong> Votre site d'horaires de prière est maintenant équipé des dernières technologies avec animations HD et notifications intelligentes !
+            </div>
+        </div>
+        
+        <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 15px; margin-top: 30px;">
+            <h3 style="color: #92400e; margin-bottom: 15px; font-size: 1.5em;">
+                🤲 Qu'Allah accepte nos prières
+            </h3>
+            <p style="color: #78350f; font-size: 1.2em;">
+                بارك الله فيكم (Qu'Allah vous bénisse)
+            </p>
+        </div>
+    </div>
+</body>
+</html>
