@@ -1582,6 +1582,10 @@ let notificationSettings = {
     lastNotified: {}
 };
 
+// Variables pour stocker les données de prières
+let city1Data = null;
+let city2Data = null;
+
 // Charger les paramètres sauvegardés
 function loadNotificationSettings() {
     const saved = localStorage.getItem('prayerNotifications');
@@ -1620,6 +1624,7 @@ async function requestNotificationPermission() {
     if (Notification.permission === "granted") {
         notificationSettings.enabled = true;
         saveNotificationSettings();
+        showSuccessMessage("Notifications activées avec succès!");
         return true;
     }
     
@@ -1644,12 +1649,12 @@ async function requestNotificationPermission() {
 function showSuccessMessage(message) {
     const btn = document.getElementById('enable-browser-notifications');
     if (btn) {
-        const originalText = btn.innerHTML;
+        const originalHTML = btn.innerHTML;
         btn.innerHTML = `<span>✅ ${message}</span>`;
         btn.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
         
         setTimeout(() => {
-            btn.innerHTML = originalText;
+            btn.innerHTML = originalHTML;
         }, 3000);
     }
 }
@@ -1859,14 +1864,15 @@ function checkPrayerTimes() {
     const now = new Date();
     const currentTime = now.getHours() * 60 + now.getMinutes();
     
-    // Vérifier pour chaque ville
-    ['city1', 'city2'].forEach(cityId => {
-        const cityData = cityId === 'city1' ? city1Data : city2Data;
-        
-        if (!cityData || !cityData.prayers) return;
-        
-        Object.keys(cityData.prayers).forEach(prayerName => {
-            const prayerTime = cityData.prayers[prayerName];
+    // Vérifier pour chaque ville (utiliser city1Data qui contient les horaires)
+    if (city1Data && city1Data.timings) {
+        Object.keys(city1Data.timings).forEach(prayerName => {
+            // Ignorer les prières autres que les 5 principales
+            if (!['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].includes(prayerName)) {
+                return;
+            }
+            
+            const prayerTime = city1Data.timings[prayerName];
             if (!prayerTime) return;
             
             // Convertir l'heure de prière en minutes
@@ -1878,84 +1884,87 @@ function checkPrayerTimes() {
                 sendPrayerNotification(prayerName);
             }
         });
-    });
+    }
 }
 
 // Initialisation des événements pour les notifications
 document.addEventListener('DOMContentLoaded', function() {
-    loadNotificationSettings();
-    
-    // Bouton pour activer les notifications
-    const enableNotificationsBtn = document.getElementById('enable-browser-notifications');
-    if (enableNotificationsBtn) {
-        enableNotificationsBtn.addEventListener('click', requestNotificationPermission);
-    }
-    
-    // Checkboxes pour chaque prière
-    ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach(prayer => {
-        const checkbox = document.getElementById(`notify-${prayer}`);
-        if (checkbox) {
-            checkbox.addEventListener('change', function() {
-                const prayerName = prayer.charAt(0).toUpperCase() + prayer.slice(1);
-                notificationSettings.prayers[prayerName] = this.checked;
+    // Attendre que le reste du code soit chargé
+    setTimeout(() => {
+        loadNotificationSettings();
+        
+        // Bouton pour activer les notifications
+        const enableNotificationsBtn = document.getElementById('enable-browser-notifications');
+        if (enableNotificationsBtn) {
+            enableNotificationsBtn.addEventListener('click', requestNotificationPermission);
+        }
+        
+        // Checkboxes pour chaque prière
+        ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].forEach(prayer => {
+            const checkbox = document.getElementById(`notify-${prayer}`);
+            if (checkbox) {
+                checkbox.addEventListener('change', function() {
+                    const prayerName = prayer.charAt(0).toUpperCase() + prayer.slice(1);
+                    notificationSettings.prayers[prayerName] = this.checked;
+                    saveNotificationSettings();
+                });
+            }
+        });
+        
+        // Contrôle du volume
+        const volumeSlider = document.getElementById('adhan-volume');
+        const volumeValue = document.getElementById('volume-value');
+        if (volumeSlider && volumeValue) {
+            volumeSlider.addEventListener('input', function() {
+                notificationSettings.volume = this.value / 100;
+                volumeValue.textContent = this.value + '%';
                 saveNotificationSettings();
             });
         }
-    });
-    
-    // Contrôle du volume
-    const volumeSlider = document.getElementById('adhan-volume');
-    const volumeValue = document.getElementById('volume-value');
-    if (volumeSlider && volumeValue) {
-        volumeSlider.addEventListener('input', function() {
-            notificationSettings.volume = this.value / 100;
-            volumeValue.textContent = this.value + '%';
-            saveNotificationSettings();
-        });
-    }
-    
-    // Bouton de test
-    const testBtn = document.getElementById('test-notification');
-    if (testBtn) {
-        testBtn.addEventListener('click', function() {
-            playAdhan();
-            createVisualNotification(
-                '🔊 Test de l\'Adhan',
-                'Ceci est un test. L\'adhan devrait maintenant être joué.'
-            );
-        });
-    }
-    
-    // Bouton notifications dans le header
-    const notificationsBtn = document.getElementById('notifications-btn');
-    const notificationsModal = document.getElementById('notifications-modal');
-    const closeNotifications = document.getElementById('close-notifications');
-    
-    if (notificationsBtn && notificationsModal) {
-        notificationsBtn.addEventListener('click', function() {
-            notificationsModal.style.display = 'flex';
-        });
-    }
-    
-    if (closeNotifications && notificationsModal) {
-        closeNotifications.addEventListener('click', function() {
-            notificationsModal.style.display = 'none';
-        });
-    }
-    
-    if (notificationsModal) {
-        notificationsModal.addEventListener('click', function(e) {
-            if (e.target === notificationsModal) {
+        
+        // Bouton de test
+        const testBtn = document.getElementById('test-notification');
+        if (testBtn) {
+            testBtn.addEventListener('click', function() {
+                playAdhan();
+                createVisualNotification(
+                    '🔊 Test de l\'Adhan',
+                    'Ceci est un test. L\'adhan devrait maintenant être joué.'
+                );
+            });
+        }
+        
+        // Bouton notifications dans le header
+        const notificationsBtn = document.getElementById('notifications-btn');
+        const notificationsModal = document.getElementById('notifications-modal');
+        const closeNotifications = document.getElementById('close-notifications');
+        
+        if (notificationsBtn && notificationsModal) {
+            notificationsBtn.addEventListener('click', function() {
+                notificationsModal.style.display = 'flex';
+            });
+        }
+        
+        if (closeNotifications && notificationsModal) {
+            closeNotifications.addEventListener('click', function() {
                 notificationsModal.style.display = 'none';
-            }
-        });
-    }
-    
-    // Vérifier les heures de prière toutes les 30 secondes
-    setInterval(checkPrayerTimes, 30000);
-    
-    // Vérifier immédiatement
-    checkPrayerTimes();
+            });
+        }
+        
+        if (notificationsModal) {
+            notificationsModal.addEventListener('click', function(e) {
+                if (e.target === notificationsModal) {
+                    notificationsModal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Vérifier les heures de prière toutes les 30 secondes
+        setInterval(checkPrayerTimes, 30000);
+        
+        // Vérifier immédiatement
+        checkPrayerTimes();
+    }, 1000);
 });
 
 // Nettoyer les anciennes notifications chaque jour
